@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "spotify-cover-maker"
+version = "0.1.0"
+description = ""
+authors = ["Riley Flynn <riley@rileyflynn.me>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "spotify_cover_maker"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pydantic = "^1.10.4"
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^0.991"
+isort = "^5.11.4"
+black = {extras = ["d"], version = "^22.12.0"}
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
