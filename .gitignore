@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+covers/*
+!covers/.gitkeep
+covers.yaml
