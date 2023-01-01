@@ -18,8 +18,8 @@
     </g>
     <defs>
         <linearGradient id="_Linear1" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(1000.33,719.597,-719.597,1000.33,3.43297,122.534)">
-            <stop offset="0" style="stop-color:rgb(131,0,120);stop-opacity:1" />
-            <stop offset="1" style="stop-color:rgb(127,0,200);stop-opacity:1" />
+            <stop offset="0" style="stop-color:{{ colour_1 }};stop-opacity:1" />
+            <stop offset="1" style="stop-color:{{ colour_2 }};stop-opacity:1" />
         </linearGradient>
     </defs>
 </svg>
