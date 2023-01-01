@@ -1,4 +1,5 @@
 import yaml
+from cairosvg import svg2png
 from jinja2 import Environment, FileSystemLoader
 from pydantic import BaseModel, parse_obj_as
 from rich.progress import track
@@ -19,6 +20,14 @@ with open("covers.yaml") as f:
     covers = parse_obj_as(list[Cover], covers_yaml)
 
 for cover in track(covers, description="Generating covers..."):
-    env.get_template(cover.template).stream(
+    png_filename = "covers/" + cover.name + ".png"
+
+    svg_data = env.get_template(cover.template).render(
         title=cover.title, subtitle=cover.subtitle
-    ).dump("covers/" + cover.name + ".svg")
+    )
+    svg2png(
+        bytestring=svg_data.encode(),
+        write_to=png_filename,
+        output_width=1000,
+        output_height=1000,
+    )
