@@ -10,9 +10,11 @@ from rich.progress import track
 class Cover(BaseModel):
     template: str = "gradient.svg"
 
+    heading_lines: list[str] = ["Favourite", "Songs"]
+
     name: str
-    title: str
-    subtitle: str
+    title: str | None = None
+    subtitle: str | None = None
 
 
 env = Environment(loader=FileSystemLoader("templates"))
@@ -34,6 +36,7 @@ for cover in track(covers, description="Generating covers..."):
     png_filename = "covers/" + cover.name + ".png"
 
     svg_data = env.get_template(cover.template).render(
+        heading_lines=cover.heading_lines,
         title=cover.title,
         subtitle=cover.subtitle,
         colour_1=f"rgb({r1},{g1},{b1})",

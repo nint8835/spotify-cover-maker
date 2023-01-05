@@ -6,16 +6,17 @@
     </g>
 
     <g transform="matrix(1,0,0,1,-66.5839,-51.5039)">
-        <text x="104.209px" y="182.254px" style="font-family:'Avenir-Black', 'Avenir', sans-serif;font-weight:800;font-size:125px;fill:white;">Favourite</text>
-        <g transform="matrix(125,0,0,125,460.584,307.254)">
-        </g>
-        <text x="104.209px" y="307.254px" style="font-family:'Avenir-Black', 'Avenir', sans-serif;font-weight:800;font-size:125px;fill:white;">Songs</text>
+        {% for heading_line in heading_lines %}
+        <text x="104.209px" y="{{182.254 + (125 * loop.index0)}}px" style="font-family:'Avenir-Black', 'Avenir', sans-serif;font-weight:800;font-size:125px;fill:white;">{{ heading_line }}</text>
+        {% endfor %}
     </g>
     <g transform="matrix(1,0,0,1,-29.3949,-42.7013)">
-        <text x="69.495px" y="918.468px" style="font-family:'Avenir-Black', 'Avenir', sans-serif;font-weight:800;font-size:100px;fill:white;">{{ title }}</text>
-        <g transform="matrix(75,0,0,75,247.095,1001.8)">
-        </g>
+        {% if title %}
+        <text x="69.495px" y="{% if subtitle %}918.468px{% else %}978.7014{% endif %}" style="font-family:'Avenir-Black', 'Avenir', sans-serif;font-weight:800;font-size:100px;fill:white;">{{ title }}</text>
+        {% endif %}
+        {% if subtitle %}
         <text x="69.495px" y="1001.8px" style="font-family:'Avenir-Black', 'Avenir', sans-serif;font-weight:800;font-size:75px;fill:white;">{{ subtitle }}</text>
+        {% endif %}
     </g>
     <defs>
         <linearGradient id="_Linear1" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(1000.33,719.597,-719.597,1000.33,3.43297,122.534)">
