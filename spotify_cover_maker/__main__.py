@@ -2,7 +2,7 @@ import random
 
 import yaml
 from cairosvg import svg2png
-from jinja2 import Environment, FileSystemLoader
+from jinja2 import Environment, PackageLoader
 from pydantic import BaseModel, parse_obj_as
 from rich.progress import track
 
@@ -17,7 +17,7 @@ class Cover(BaseModel):
     subtitle: str | None = None
 
 
-env = Environment(loader=FileSystemLoader("templates"))
+env = Environment(loader=PackageLoader("spotify_cover_maker", "templates"))
 
 with open("covers.yaml") as f:
     covers_yaml = yaml.safe_load(f)
