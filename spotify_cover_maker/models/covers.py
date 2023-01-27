@@ -1,17 +1,19 @@
+import os
 import random
 from typing import Annotated, Any, Literal
 
-from pydantic import BaseModel, Field, parse_obj_as
+import yaml
+from pydantic import BaseModel, Field
 
 
-class TemplateDataBase(BaseModel):
+class CoverBase(BaseModel):
     name: str
 
     def get_template_data(self) -> dict[str, Any]:
         return {}
 
 
-class GradientTemplateData(TemplateDataBase):
+class GradientCover(CoverBase):
     template: Literal["gradient"]
 
     heading_lines: list[str] = ["Favourite", "Songs"]
@@ -39,9 +41,14 @@ class GradientTemplateData(TemplateDataBase):
 
 
 # Discriminated unions require 2 or more types, so this needs to be commented out until there's a second template type
-# TemplateData = Annotated[GradientTemplateData, Field(discriminator="template")]
-TemplateData = GradientTemplateData
+# Cover = Annotated[GradientCover, Field(discriminator="template")]
+Cover = GradientCover
 
 
-def parse_template_data(data: list[dict[str, Any]]) -> list[TemplateData]:
-    return parse_obj_as(list[TemplateData], data)
+class CoverFile(BaseModel):
+    covers: list[Cover]
+
+
+def load_cover_data(path: str | os.PathLike[str] = "covers.yaml") -> CoverFile:
+    with open(path) as f:
+        return CoverFile.parse_obj(yaml.safe_load(f))

@@ -1,10 +1,10 @@
 from cairosvg import svg2png
 from jinja2 import Environment, PackageLoader
 
-from .template_data import TemplateData
+from spotify_cover_maker.models import Cover
 
 
-def render(cover: TemplateData) -> str:
+def render(cover: Cover) -> str:
     return (
         Environment(loader=PackageLoader("spotify_cover_maker", "templates"))
         .get_template(cover.template + ".svg")
