@@ -1,3 +1,5 @@
+import hashlib
+import json
 import os
 import random
 from typing import Annotated, Any, Literal
@@ -11,6 +13,11 @@ class CoverBase(BaseModel):
 
     def get_template_data(self) -> dict[str, Any]:
         return {}
+
+    def get_data_hash(self) -> str:
+        return hashlib.sha512(
+            json.dumps(self.get_template_data()).encode("utf8"), usedforsecurity=False
+        ).hexdigest()
 
 
 class GradientCover(CoverBase):
