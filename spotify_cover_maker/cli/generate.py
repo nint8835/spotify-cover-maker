@@ -9,7 +9,7 @@ from spotify_cover_maker.models import (
     load_state_data,
     save_state_data,
 )
-from spotify_cover_maker.render import render, to_png
+from spotify_cover_maker.rendering import render, to_png
 
 generate_app = typer.Typer(help="Generate covers.")
 console = Console()
