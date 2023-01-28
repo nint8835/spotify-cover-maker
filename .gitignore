@@ -133,3 +133,4 @@ dmypy.json
 covers/*
 !covers/.gitkeep
 covers.yaml
+.scm_state.yaml

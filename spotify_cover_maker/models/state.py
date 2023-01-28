@@ -7,6 +7,7 @@ import yaml
 from pydantic import BaseModel
 
 from spotify_cover_maker import templates
+
 from .covers import Cover
 
 
