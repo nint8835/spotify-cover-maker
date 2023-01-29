@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import typer
 from rich.console import Console
 from rich.progress import track
@@ -13,13 +15,19 @@ console = Console()
 
 @app.command(name="generate")
 def generate(
-    mode: PlanMode = typer.Argument(
+    mode: PlanMode = typer.Option(
         PlanMode.changed, help="Selection of covers to generate."
-    )
+    ),
+    covers_path: Path = typer.Option(
+        "covers.yaml", help="Path to the file containing your cover definitions."
+    ),
+    state_path: Path = typer.Option(
+        ".scm_state.yaml", help="Path to the file that cover state should be saved in."
+    ),
 ) -> None:
     """Generate cover images."""
 
-    plan = RenderPlan(mode)
+    plan = RenderPlan(mode, covers_path=covers_path, state_path=state_path)
 
     if len(plan.covers) == 0:
         console.print("No covers have changed.", style="green")
@@ -33,7 +41,7 @@ def generate(
 
         plan.state.generated_covers[cover.name] = GeneratedCoverState.for_cover(cover)
 
-    save_state_data(plan.state)
+    save_state_data(plan.state, state_path)
 
 
 @app.callback()
