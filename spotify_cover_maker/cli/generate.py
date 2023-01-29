@@ -1,5 +1,3 @@
-from pprint import pprint
-
 import typer
 from rich.console import Console
 from rich.progress import track
@@ -15,14 +13,14 @@ console = Console()
 def changed() -> None:
     """Generate all covers from covers.yaml which have changed since last run."""
 
-    plan = RenderPlan.plan(PlanMode.changed)
+    plan = RenderPlan(PlanMode.changed)
 
     if len(plan.covers) == 0:
         console.print("No covers have changed.", style="green")
         return
 
     for cover in track(plan.covers, description="Generating covers..."):
-        png_filename = "covers/" + cover.name + ".png"
+        png_filename = plan.config.path_for(cover)
 
         svg_data = render(cover)
         to_png(svg_data, png_filename)

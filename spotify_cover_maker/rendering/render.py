@@ -1,3 +1,6 @@
+import os
+from pathlib import Path
+
 from cairosvg import svg2png
 from jinja2 import Environment, PackageLoader
 
@@ -15,11 +18,12 @@ def render(cover: Cover) -> str:
 
 
 def to_png(
-    svg_data: str, png_filename: str, *, width: int = 1000, height: int = 1000
+    svg_data: str, png_path: Path, *, width: int = 1000, height: int = 1000
 ) -> None:
+    png_path.parent.mkdir(parents=True, exist_ok=True)
     svg2png(
         bytestring=svg_data.encode(),
-        write_to=png_filename,
+        write_to=str(png_path),
         output_width=width,
         output_height=height,
     )

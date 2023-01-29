@@ -2,6 +2,7 @@ import hashlib
 import json
 import os
 import random
+from pathlib import Path
 from typing import Annotated, Any, Literal
 
 import yaml
@@ -54,6 +55,10 @@ Cover = GradientCover
 
 class CoverFile(BaseModel):
     covers: list[Cover]
+    output_path: str = "covers"
+
+    def path_for(self, cover: Cover) -> Path:
+        return Path(self.output_path) / f"{cover.name}.png"
 
 
 def load_cover_data(path: str | os.PathLike[str] = "covers.yaml") -> CoverFile:
