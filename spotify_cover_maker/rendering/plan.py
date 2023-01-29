@@ -11,7 +11,7 @@ from spotify_cover_maker.models import (
 )
 
 
-class PlanMode(Enum):
+class PlanMode(str, Enum):
     changed = "changed"
     missing = "missing"
     all = "all"
