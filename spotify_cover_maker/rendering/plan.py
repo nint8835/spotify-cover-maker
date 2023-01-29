@@ -1,6 +1,9 @@
 import os
 from enum import Enum
 
+from rich.console import Console
+from rich.progress import Progress
+
 from spotify_cover_maker.models import (
     Cover,
     CoverFile,
@@ -8,7 +11,10 @@ from spotify_cover_maker.models import (
     StateFile,
     load_cover_data,
     load_state_data,
+    save_state_data,
 )
+
+from .render import render, to_png
 
 
 class PlanMode(str, Enum):
@@ -53,3 +59,29 @@ class RenderPlan:
                         != GeneratedCoverState.for_cover(cover)
                     ):
                         self.covers.append(cover)
+
+    def __len__(self) -> int:
+        return len(self.covers)
+
+    def render(self, *, progress: Progress | None = None) -> None:
+        if progress is None:
+            # If the caller has not provided a progress bar for us to use, create a silent one to allow for progress
+            # code to continue being used without outputting to the terminal
+            progress = Progress(console=Console(quiet=True))
+
+        with progress:
+            task = progress.add_task("Generating covers...", total=len(self.covers))
+
+            for cover in self.covers:
+                png_filename = self.config.path_for(cover)
+
+                svg_data = render(cover)
+                to_png(svg_data, png_filename)
+
+                self.state.generated_covers[cover.name] = GeneratedCoverState.for_cover(
+                    cover
+                )
+
+                progress.update(task, advance=1)
+
+        save_state_data(self.state, self.state_path)

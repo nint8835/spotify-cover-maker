@@ -2,10 +2,15 @@ from pathlib import Path
 
 import typer
 from rich.console import Console
-from rich.progress import track
+from rich.progress import (
+    BarColumn,
+    MofNCompleteColumn,
+    Progress,
+    TextColumn,
+    TimeRemainingColumn,
+)
 
-from spotify_cover_maker.models import GeneratedCoverState, save_state_data
-from spotify_cover_maker.rendering import PlanMode, RenderPlan, render, to_png
+from spotify_cover_maker.rendering import PlanMode, RenderPlan
 
 app = typer.Typer(
     help="Utility for automatically generating cover images for Spotify playlists."
@@ -29,19 +34,19 @@ def generate(
 
     plan = RenderPlan(mode, covers_path=covers_path, state_path=state_path)
 
-    if len(plan.covers) == 0:
+    if len(plan) == 0:
         console.print("No covers have changed.", style="green")
         return
 
-    for cover in track(plan.covers, description="Generating covers..."):
-        png_filename = plan.config.path_for(cover)
-
-        svg_data = render(cover)
-        to_png(svg_data, png_filename)
-
-        plan.state.generated_covers[cover.name] = GeneratedCoverState.for_cover(cover)
-
-    save_state_data(plan.state, state_path)
+    plan.render(
+        progress=Progress(
+            TextColumn("[progress.description]{task.description}"),
+            BarColumn(),
+            MofNCompleteColumn(),
+            TimeRemainingColumn(),
+            console=console,
+        )
+    )
 
 
 @app.callback()
