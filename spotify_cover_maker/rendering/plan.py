@@ -3,6 +3,7 @@ from enum import Enum
 
 from spotify_cover_maker.models import (
     Cover,
+    GeneratedCoverState,
     StateFile,
     load_cover_data,
     load_state_data,
@@ -47,7 +48,8 @@ class RenderPlan:
                 case PlanMode.changed:
                     if (
                         cover.name not in plan.state.generated_covers
-                        or plan.state.generated_covers[cover.name].should_render(cover)
+                        or plan.state.generated_covers[cover.name]
+                        != GeneratedCoverState.for_cover(cover)
                     ):
                         plan.covers.append(cover)
 

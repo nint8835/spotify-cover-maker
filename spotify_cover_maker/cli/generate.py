@@ -27,8 +27,6 @@ def changed() -> None:
         svg_data = render(cover)
         to_png(svg_data, png_filename)
 
-        plan.state.generated_covers[cover.name] = GeneratedCoverState.generate_state(
-            cover
-        )
+        plan.state.generated_covers[cover.name] = GeneratedCoverState.for_cover(cover)
 
     save_state_data(plan.state)

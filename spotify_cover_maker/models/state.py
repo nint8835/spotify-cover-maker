@@ -2,6 +2,7 @@ import hashlib
 import importlib.resources
 import os
 from functools import lru_cache
+from typing import Any
 
 import yaml
 from pydantic import BaseModel
@@ -28,8 +29,17 @@ class GeneratedCoverState(BaseModel):
             or cover.get_data_hash() != self.data_hash
         )
 
+    def __eq__(self, other: Any) -> bool:
+        if not isinstance(other, GeneratedCoverState):
+            return False
+
+        return (
+            self.template_hash == other.template_hash
+            and self.data_hash == other.data_hash
+        )
+
     @classmethod
-    def generate_state(cls, cover: Cover) -> "GeneratedCoverState":
+    def for_cover(cls, cover: Cover) -> "GeneratedCoverState":
         template_hash = get_template_hash(cover.template)
         cover_data_hash = cover.get_data_hash()
 
