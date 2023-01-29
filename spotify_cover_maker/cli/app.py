@@ -37,5 +37,5 @@ def generate(
 
 
 @app.callback()
-def callback():
+def callback() -> None:
     pass
