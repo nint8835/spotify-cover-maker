@@ -1,5 +1,9 @@
+from pathlib import Path
+
+import filetype
+
 from spotify_cover_maker.models.covers import GradientCover
-from spotify_cover_maker.rendering import render
+from spotify_cover_maker.rendering import render, to_png
 
 GRADIENT_SINGLE_LINE_HEADING = """<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
@@ -171,3 +175,15 @@ def test_render_gradient_with_no_subtitle_or_title() -> None:
     )
 
     assert svg_result == GRADIENT_NO_SUBTITLE_OR_TITLE
+
+
+def test_to_png_produces_png(tmp_path: Path) -> None:
+    png_path = tmp_path / "test.png"
+
+    to_png(
+        svg_data="<svg></svg>",
+        png_path=png_path,
+    )
+
+    assert png_path.exists()
+    assert filetype.guess(png_path).mime == "image/png"
