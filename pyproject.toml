@@ -23,6 +23,7 @@ filetype = "^1.2.0"
 isort = "^5.11.4"
 mypy = "^0.991"
 pytest = "^7.2.1"
+pytest-cov = "^4.0.0"
 types-PyYAML = "^6.0.12.2"
 
 [build-system]
