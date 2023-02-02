@@ -3,10 +3,10 @@ import json
 import os
 import random
 from pathlib import Path
-from typing import Annotated, Any, Literal
+from typing import Any, Literal
 
 import yaml
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 
 class CoverBase(BaseModel):
@@ -48,7 +48,8 @@ class GradientCover(CoverBase):
         }
 
 
-# Discriminated unions require 2 or more types, so this needs to be commented out until there's a second template type
+# Discriminated unions require 2 or more types, so this needs to be commented out until
+# there's a second template type
 # Cover = Annotated[GradientCover, Field(discriminator="template")]
 Cover = GradientCover
 

@@ -65,8 +65,9 @@ class RenderPlan:
 
     def render(self, *, progress: Progress | None = None) -> None:
         if progress is None:
-            # If the caller has not provided a progress bar for us to use, create a silent one to allow for progress
-            # code to continue being used without outputting to the terminal
+            # If the caller has not provided a progress bar for us to use, create a
+            # silent one to allow for progress code to continue being used without
+            # outputting to the terminal
             progress = Progress(console=Console(quiet=True))
 
         with progress:
