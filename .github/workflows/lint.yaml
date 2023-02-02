@@ -28,7 +28,7 @@ jobs:
           poetry install
       - name: Lint with black
         run: |
-          python -m black --check
+          python -m black --check .
 
   mypy:
     runs-on: ubuntu-latest
@@ -74,4 +74,4 @@ jobs:
           poetry install
       - name: Lint with isort
         run: |
-          python -m isort --check
+          python -m isort --check .
