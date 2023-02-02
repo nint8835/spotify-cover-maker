@@ -29,13 +29,13 @@ class RenderPlan:
     config: CoverFile
     state: StateFile
 
-    state_path: str | os.PathLike[str]
+    state_path: os.PathLike[str]
 
     def __init__(
         self,
         mode: PlanMode,
-        covers_path: str | os.PathLike[str] = "covers.yaml",
-        state_path: str | os.PathLike[str] = ".scm_state.yaml",
+        covers_path: os.PathLike[str],
+        state_path: os.PathLike[str],
     ) -> None:
         self.covers = []
         self.state_path = state_path

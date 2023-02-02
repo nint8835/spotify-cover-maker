@@ -52,7 +52,7 @@ class StateFile(BaseModel):
     generated_covers: dict[str, GeneratedCoverState] = {}
 
 
-def load_state_data(path: str | os.PathLike[str] = ".scm_state.yaml") -> StateFile:
+def load_state_data(path: os.PathLike[str]) -> StateFile:
     if not os.path.isfile(path):
         return StateFile()
 
@@ -60,8 +60,6 @@ def load_state_data(path: str | os.PathLike[str] = ".scm_state.yaml") -> StateFi
         return StateFile.parse_obj(yaml.safe_load(f))
 
 
-def save_state_data(
-    state: StateFile, path: str | os.PathLike[str] = ".scm_state.yaml"
-) -> None:
+def save_state_data(state: StateFile, path: os.PathLike[str]) -> None:
     with open(path, "w") as f:
         yaml.dump(state.dict(), f)

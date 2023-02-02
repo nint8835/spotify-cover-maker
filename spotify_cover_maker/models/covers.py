@@ -61,6 +61,6 @@ class CoverFile(BaseModel):
         return Path(self.output_path) / f"{cover.name}.png"
 
 
-def load_cover_data(path: str | os.PathLike[str] = "covers.yaml") -> CoverFile:
+def load_cover_data(path: os.PathLike[str]) -> CoverFile:
     with open(path) as f:
         return CoverFile.parse_obj(yaml.safe_load(f))
