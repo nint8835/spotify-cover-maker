@@ -130,7 +130,6 @@ dmypy.json
 
 .idea/
 
-covers/*
-!covers/.gitkeep
+covers/
 covers.yaml
 .scm_state.yaml
