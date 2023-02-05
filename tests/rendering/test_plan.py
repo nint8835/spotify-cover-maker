@@ -21,6 +21,7 @@ def test_plan_mode_all() -> None:
         GradientCover(name="changed_template", template="gradient"),
         GradientCover(name="missing_file", template="gradient"),
     ]
+    assert len(plan) == 4
 
 
 def test_plan_mode_changed() -> None:
@@ -33,6 +34,7 @@ def test_plan_mode_changed() -> None:
         GradientCover(name="changed_data", template="gradient"),
         GradientCover(name="changed_template", template="gradient"),
     ]
+    assert len(plan) == 3
 
 
 def test_plan_mode_missing() -> None:
@@ -44,6 +46,7 @@ def test_plan_mode_missing() -> None:
         GradientCover(name="new", template="gradient"),
         GradientCover(name="missing_file", template="gradient"),
     ]
+    assert len(plan) == 2
 
 
 def test_plan_render(tmp_path: Path, monkeypatch: MonkeyPatch) -> None:
@@ -60,6 +63,7 @@ def test_plan_render(tmp_path: Path, monkeypatch: MonkeyPatch) -> None:
     plan = RenderPlan(PlanMode.all, Path("covers.yaml"), Path(".scm_state.yaml"))
 
     assert plan.covers == [test_cover]
+    assert len(plan) == 1
 
     plan.render()
 

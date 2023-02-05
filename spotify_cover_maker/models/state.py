@@ -23,12 +23,6 @@ class GeneratedCoverState(BaseModel):
     data_hash: str
     template_hash: str
 
-    def should_render(self, cover: Cover) -> bool:
-        return (
-            get_template_hash(cover.template) != self.template_hash
-            or cover.get_data_hash() != self.data_hash
-        )
-
     def __eq__(self, other: Any) -> bool:
         if not isinstance(other, GeneratedCoverState):
             return False
