@@ -7,6 +7,9 @@ license = "MIT"
 readme = "README.md"
 packages = [{include = "spotify_cover_maker"}]
 
+[tool.poetry.scripts]
+spotify-cover-maker = "spotify_cover_maker.cli:app"
+
 [tool.poetry.dependencies]
 python = "^3.10"
 
