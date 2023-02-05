@@ -1,0 +1,10 @@
+output_path: tests/rendering/plan_test/covers
+covers:
+  - name: new
+    template: gradient
+  - name: changed_data
+    template: gradient
+  - name: changed_template
+    template: gradient
+  - name: missing_file
+    template: gradient

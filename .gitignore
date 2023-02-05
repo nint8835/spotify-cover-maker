@@ -130,6 +130,6 @@ dmypy.json
 
 .idea/
 
-covers/
-covers.yaml
-.scm_state.yaml
+/covers/
+/covers.yaml
+/.scm_state.yaml

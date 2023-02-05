@@ -1,0 +1,10 @@
+generated_covers:
+  changed_data:
+    data_hash: fake_hash
+    template_hash: 32ed9e6c2563419d9b030efc900ff910e8b4d0b87ed0cffd8b0757b78b87ad61f194bcef97ad76e9798191f9e775962ffd45f01bf3b5abe21019e93775096fd8
+  changed_template:
+    data_hash: 8ca4f16ab8e39e1cdc4cc85af666b775b9a2437740e2fad04b9f0453bce164ada83cd7aa9107e10eaf4ad26685ba9144c1016046f0ec47d93d10327b0c2fab32
+    template_hash: fake_hash
+  missing_file:
+    data_hash: 7d1faff9dc659ce61baa65c292540449eecc478fc210506ba3c0802400d33207fdec7d6145f0922f9f430a867879b18b910634b5889fd96dc6d30ecdbc3996fd
+    template_hash: 32ed9e6c2563419d9b030efc900ff910e8b4d0b87ed0cffd8b0757b78b87ad61f194bcef97ad76e9798191f9e775962ffd45f01bf3b5abe21019e93775096fd8
