@@ -7,15 +7,15 @@
 
     <g transform="matrix(1,0,0,1,-66.5839,-51.5039)">
         {% for heading_line in heading_lines %}
-        <text x="104.209px" y="{{182.254 + (125 * loop.index0)}}px" style="font-family:'Avenir-Black', 'Avenir', sans-serif;font-weight:800;font-size:125px;fill:white;">{{ heading_line }}</text>
+        <text x="104.209px" y="{{182.254 + (125 * loop.index0)}}px" style="font-family:'Avenir', sans-serif;font-weight:800;font-size:125px;fill:white;">{{ heading_line }}</text>
         {% endfor %}
     </g>
     <g transform="matrix(1,0,0,1,-29.3949,-42.7013)">
         {% if title %}
-        <text x="69.495px" y="{% if subtitle %}918.468px{% else %}978.7014px{% endif %}" style="font-family:'Avenir-Black', 'Avenir', sans-serif;font-weight:800;font-size:100px;fill:white;">{{ title }}</text>
+        <text x="69.495px" y="{% if subtitle %}918.468px{% else %}978.7014px{% endif %}" style="font-family:'Avenir', sans-serif;font-weight:800;font-size:100px;fill:white;">{{ title }}</text>
         {% endif %}
         {% if subtitle %}
-        <text x="69.495px" y="1001.8px" style="font-family:'Avenir-Black', 'Avenir', sans-serif;font-weight:800;font-size:75px;fill:white;">{{ subtitle }}</text>
+        <text x="69.495px" y="1001.8px" style="font-family:'Avenir', sans-serif;font-weight:800;font-size:75px;fill:white;">{{ subtitle }}</text>
         {% endif %}
     </g>
     <defs>
