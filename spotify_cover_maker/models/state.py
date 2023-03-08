@@ -16,7 +16,6 @@ from .covers import Cover
 def get_template_hash(template: str) -> str:
     files = importlib.resources.files(templates)
     template_file = files.joinpath(template + ".svg").read_bytes()
-    # template_file = importlib.resources.read_binary(templates, template + ".svg")
 
     return hashlib.sha512(template_file, usedforsecurity=False).hexdigest()
 
