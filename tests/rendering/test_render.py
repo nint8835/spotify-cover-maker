@@ -14,15 +14,15 @@ GRADIENT_SINGLE_LINE_HEADING = """<?xml version="1.0" encoding="UTF-8" standalon
 
     <g transform="matrix(1,0,0,1,-66.5839,-51.5039)">
         
-        <text x="104.209px" y="182.254px" style="font-family:'Avenir-Black', 'Avenir', sans-serif;font-weight:800;font-size:125px;fill:white;">Testing</text>
+        <text x="104.209px" y="182.254px" style="font-family:'Avenir', sans-serif;font-weight:800;font-size:125px;fill:white;">Testing</text>
         
     </g>
     <g transform="matrix(1,0,0,1,-29.3949,-42.7013)">
         
-        <text x="69.495px" y="918.468px" style="font-family:'Avenir-Black', 'Avenir', sans-serif;font-weight:800;font-size:100px;fill:white;">Title</text>
+        <text x="69.495px" y="918.468px" style="font-family:'Avenir', sans-serif;font-weight:800;font-size:100px;fill:white;">Title</text>
         
         
-        <text x="69.495px" y="1001.8px" style="font-family:'Avenir-Black', 'Avenir', sans-serif;font-weight:800;font-size:75px;fill:white;">Subtitle</text>
+        <text x="69.495px" y="1001.8px" style="font-family:'Avenir', sans-serif;font-weight:800;font-size:75px;fill:white;">Subtitle</text>
         
     </g>
     <defs>
@@ -57,17 +57,17 @@ GRADIENT_MULTI_LINE_HEADING = """<?xml version="1.0" encoding="UTF-8" standalone
 
     <g transform="matrix(1,0,0,1,-66.5839,-51.5039)">
         
-        <text x="104.209px" y="182.254px" style="font-family:'Avenir-Black', 'Avenir', sans-serif;font-weight:800;font-size:125px;fill:white;">Testing</text>
+        <text x="104.209px" y="182.254px" style="font-family:'Avenir', sans-serif;font-weight:800;font-size:125px;fill:white;">Testing</text>
         
-        <text x="104.209px" y="307.254px" style="font-family:'Avenir-Black', 'Avenir', sans-serif;font-weight:800;font-size:125px;fill:white;">2</text>
+        <text x="104.209px" y="307.254px" style="font-family:'Avenir', sans-serif;font-weight:800;font-size:125px;fill:white;">2</text>
         
     </g>
     <g transform="matrix(1,0,0,1,-29.3949,-42.7013)">
         
-        <text x="69.495px" y="918.468px" style="font-family:'Avenir-Black', 'Avenir', sans-serif;font-weight:800;font-size:100px;fill:white;">Title</text>
+        <text x="69.495px" y="918.468px" style="font-family:'Avenir', sans-serif;font-weight:800;font-size:100px;fill:white;">Title</text>
         
         
-        <text x="69.495px" y="1001.8px" style="font-family:'Avenir-Black', 'Avenir', sans-serif;font-weight:800;font-size:75px;fill:white;">Subtitle</text>
+        <text x="69.495px" y="1001.8px" style="font-family:'Avenir', sans-serif;font-weight:800;font-size:75px;fill:white;">Subtitle</text>
         
     </g>
     <defs>
@@ -102,14 +102,14 @@ GRADIENT_NO_SUBTITLE = """<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
     <g transform="matrix(1,0,0,1,-66.5839,-51.5039)">
         
-        <text x="104.209px" y="182.254px" style="font-family:'Avenir-Black', 'Avenir', sans-serif;font-weight:800;font-size:125px;fill:white;">Testing</text>
+        <text x="104.209px" y="182.254px" style="font-family:'Avenir', sans-serif;font-weight:800;font-size:125px;fill:white;">Testing</text>
         
-        <text x="104.209px" y="307.254px" style="font-family:'Avenir-Black', 'Avenir', sans-serif;font-weight:800;font-size:125px;fill:white;">2</text>
+        <text x="104.209px" y="307.254px" style="font-family:'Avenir', sans-serif;font-weight:800;font-size:125px;fill:white;">2</text>
         
     </g>
     <g transform="matrix(1,0,0,1,-29.3949,-42.7013)">
         
-        <text x="69.495px" y="978.7014px" style="font-family:'Avenir-Black', 'Avenir', sans-serif;font-weight:800;font-size:100px;fill:white;">Title</text>
+        <text x="69.495px" y="978.7014px" style="font-family:'Avenir', sans-serif;font-weight:800;font-size:100px;fill:white;">Title</text>
         
         
     </g>
@@ -145,9 +145,9 @@ GRADIENT_NO_SUBTITLE_OR_TITLE = """<?xml version="1.0" encoding="UTF-8" standalo
 
     <g transform="matrix(1,0,0,1,-66.5839,-51.5039)">
         
-        <text x="104.209px" y="182.254px" style="font-family:'Avenir-Black', 'Avenir', sans-serif;font-weight:800;font-size:125px;fill:white;">Testing</text>
+        <text x="104.209px" y="182.254px" style="font-family:'Avenir', sans-serif;font-weight:800;font-size:125px;fill:white;">Testing</text>
         
-        <text x="104.209px" y="307.254px" style="font-family:'Avenir-Black', 'Avenir', sans-serif;font-weight:800;font-size:125px;fill:white;">2</text>
+        <text x="104.209px" y="307.254px" style="font-family:'Avenir', sans-serif;font-weight:800;font-size:125px;fill:white;">2</text>
         
     </g>
     <g transform="matrix(1,0,0,1,-29.3949,-42.7013)">
