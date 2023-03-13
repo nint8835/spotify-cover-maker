@@ -1,6 +1,9 @@
 from textual.app import App, ComposeResult
-from textual.containers import Container, Grid
-from textual.widgets import Header, Placeholder
+from textual.binding import Binding
+from textual.containers import Container
+from textual.widgets import Footer, Header, Placeholder
+
+from .sidebar import Sidebar
 
 
 class UIRoot(App[None]):
@@ -12,11 +15,14 @@ class UIRoot(App[None]):
         grid-columns: 1fr 3fr;
     }
     """
+    BINDINGS = [Binding("a", "add_cover", "Add Cover", priority=True)]
+
+    def action_add_cover(self) -> None:
+        self.query_one(Sidebar).covers += ("test",)
 
     def compose(self) -> ComposeResult:
         yield Header()
-        yield Container(
-            Placeholder("Sidebar"),
-            Placeholder("Editor"),
-            classes="app"
-        )
+        with Container(classes="app"):
+            yield Sidebar()
+            yield Placeholder("Editor")
+        yield Footer()
