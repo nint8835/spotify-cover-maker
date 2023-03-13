@@ -10,6 +10,7 @@ from rich.progress import (
     TimeRemainingColumn,
 )
 
+from spotify_cover_maker.cli.ui import UIRoot
 from spotify_cover_maker.rendering import PlanMode, RenderPlan
 
 app = typer.Typer(
@@ -47,6 +48,12 @@ def generate(
             console=console,
         )
     )
+
+
+@app.command(name="manage")
+def manage() -> None:
+    """Open the cover management UI."""
+    UIRoot().run()
 
 
 @app.callback()
