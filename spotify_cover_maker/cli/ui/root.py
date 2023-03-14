@@ -1,13 +1,22 @@
+from pathlib import Path
+
 from textual.app import App, ComposeResult
 from textual.binding import Binding
 from textual.containers import Container
 from textual.reactive import reactive
 from textual.widgets import Footer, Header, Placeholder, Tree
 
-from spotify_cover_maker.models import Cover
+from spotify_cover_maker.models import Cover, load_cover_data
 from spotify_cover_maker.models.covers import GradientCover
 
 from .sidebar import Sidebar
+
+
+def fetch_initial_covers() -> tuple[Cover, ...]:
+    # TODO: Take in path as argument
+    cover_data = load_cover_data(Path("covers.yaml"))
+
+    return tuple(cover_data.covers)
 
 
 class UIRoot(App[None]):
@@ -21,7 +30,7 @@ class UIRoot(App[None]):
     """
     BINDINGS = [Binding("a", "add_cover", "Add Cover", priority=True)]
 
-    covers: reactive[tuple[Cover, ...]] = reactive(tuple())
+    covers: reactive[tuple[Cover, ...]] = reactive(fetch_initial_covers)
     selected_cover: reactive[str | None] = reactive(None)
 
     def action_add_cover(self) -> None:
@@ -32,7 +41,7 @@ class UIRoot(App[None]):
     def watch_covers(self, _: list[Cover], new: list[Cover]) -> None:
         self.query_one(Sidebar).covers = tuple(cover.name for cover in new)
 
-    def watch_selected_cover(self, old: str | None, new: str | None) -> None:
+    def watch_selected_cover(self, _: str | None, new: str | None) -> None:
         if new is None:
             self.sub_title = "No cover selected"
         else:
