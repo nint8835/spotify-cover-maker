@@ -4,7 +4,7 @@ from textual.app import App, ComposeResult
 from textual.binding import Binding
 from textual.containers import Container
 from textual.reactive import reactive
-from textual.widgets import Footer, Header, LoadingIndicator, Placeholder, Tree
+from textual.widgets import Footer, Header, Placeholder, Tree
 
 from spotify_cover_maker.models import Cover, load_cover_data, save_cover_data
 from spotify_cover_maker.models.covers import GradientCover
