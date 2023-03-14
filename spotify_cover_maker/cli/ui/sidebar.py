@@ -8,7 +8,7 @@ class Sidebar(Widget):
     covers: reactive[tuple[str, ...]] = reactive(tuple())
 
     def compose(self) -> ComposeResult:
-        tree: Tree[None] = Tree("Covers")
+        tree: Tree[str] = Tree("Covers")
         tree.show_root = False
 
         yield tree
@@ -17,4 +17,4 @@ class Sidebar(Widget):
         tree = self.query_one(Tree)
         tree.clear()
         for cover in new:
-            tree.root.add_leaf(cover)
+            tree.root.add_leaf(cover, cover)
