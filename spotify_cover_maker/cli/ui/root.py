@@ -4,9 +4,9 @@ from textual.app import App, ComposeResult
 from textual.binding import Binding
 from textual.containers import Container
 from textual.reactive import reactive
-from textual.widgets import Footer, Header, Placeholder, Tree
+from textual.widgets import Footer, Header, LoadingIndicator, Placeholder, Tree
 
-from spotify_cover_maker.models import Cover, load_cover_data
+from spotify_cover_maker.models import Cover, load_cover_data, save_cover_data
 from spotify_cover_maker.models.covers import GradientCover
 
 from .sidebar import Sidebar
@@ -28,7 +28,10 @@ class UIRoot(App[None]):
         grid-columns: 1fr 3fr;
     }
     """
-    BINDINGS = [Binding("a", "add_cover", "Add Cover", priority=True)]
+    BINDINGS = [
+        Binding("a", "add_cover", "Add Cover", priority=True),
+        Binding("ctrl+s", "save", "Save"),
+    ]
 
     covers: reactive[tuple[Cover, ...]] = reactive(fetch_initial_covers)
     selected_cover: reactive[str | None] = reactive(None)
@@ -37,6 +40,11 @@ class UIRoot(App[None]):
         self.covers = self.covers + (
             GradientCover(template="gradient", name=f"Test {len(self.covers)}"),
         )
+
+    def action_save(self) -> None:
+        existing_config = load_cover_data(Path("covers.yaml"))
+        existing_config.covers = list(self.covers)
+        save_cover_data(existing_config, Path("covers.yaml"))
 
     def watch_covers(self, _: list[Cover], new: list[Cover]) -> None:
         self.query_one(Sidebar).covers = tuple(cover.name for cover in new)

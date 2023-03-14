@@ -65,3 +65,8 @@ class CoverFile(BaseModel):
 def load_cover_data(path: os.PathLike[str]) -> CoverFile:
     with open(path) as f:
         return CoverFile.parse_obj(yaml.safe_load(f))
+
+
+def save_cover_data(cover_data: CoverFile, path: os.PathLike[str]) -> None:
+    with open(path, "w") as f:
+        yaml.dump(cover_data.dict(), f)
