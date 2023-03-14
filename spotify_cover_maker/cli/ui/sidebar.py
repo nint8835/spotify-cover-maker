@@ -5,10 +5,10 @@ from textual.widgets import Tree
 
 
 class Sidebar(Widget):
-    covers = reactive(tuple())
+    covers: reactive[tuple[str, ...]] = reactive(tuple())
 
     def compose(self) -> ComposeResult:
-        tree = Tree("Covers")
+        tree: Tree[None] = Tree("Covers")
         tree.show_root = False
 
         yield tree
