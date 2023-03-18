@@ -31,6 +31,7 @@ class UIRoot(App[None]):
     """
     BINDINGS = [
         Binding("ctrl+a", "add_cover", "Add Cover"),
+        Binding("ctrl+d", "delete_cover", "Delete Cover"),
         Binding("ctrl+s", "save", "Save"),
     ]
 
@@ -41,6 +42,13 @@ class UIRoot(App[None]):
         self.covers = self.covers + (
             GradientCover(template="gradient", name=f"Test {len(self.covers)}"),
         )
+
+    def action_delete_cover(self) -> None:
+        if self.selected_cover is not None:
+            self.covers = tuple(
+                cover for cover in self.covers if cover.name != self.selected_cover
+            )
+            self.selected_cover = None
 
     def action_save(self) -> None:
         existing_config = load_cover_data(Path("covers.yaml"))
