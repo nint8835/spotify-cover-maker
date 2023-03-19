@@ -40,7 +40,7 @@ class UIRoot(App[None]):
 
     def action_add_cover(self) -> None:
         self.covers = self.covers + (
-            GradientCover(template="gradient", name=f"Test {len(self.covers)}"),
+            GradientCover(template="gradient", name=f"Unnamed Cover {len(self.covers)}"),
         )
 
     def action_delete_cover(self) -> None:
@@ -71,6 +71,9 @@ class UIRoot(App[None]):
         self.selected_cover = message.node.data
 
     def on_input_changed(self, message: Input.Changed) -> None:
+        if message.input.id != "name":
+            return
+        
         next(
             cover for cover in self.covers if cover.name == self.selected_cover
         ).name = message.value
