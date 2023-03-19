@@ -4,7 +4,7 @@ from textual.app import App, ComposeResult
 from textual.binding import Binding
 from textual.containers import Container
 from textual.reactive import reactive
-from textual.widgets import Footer, Header, Tree
+from textual.widgets import Footer, Header, Input, Tree
 
 from spotify_cover_maker.models import Cover, load_cover_data, save_cover_data
 from spotify_cover_maker.models.covers import GradientCover
@@ -69,6 +69,14 @@ class UIRoot(App[None]):
 
     def on_tree_node_selected(self, message: Tree.NodeSelected[str]) -> None:
         self.selected_cover = message.node.data
+
+    def on_input_changed(self, message: Input.Changed) -> None:
+        next(
+            cover for cover in self.covers if cover.name == self.selected_cover
+        ).name = message.value
+        self.query_one(Sidebar).covers = tuple(cover.name for cover in self.covers)
+        if message.input.id == "name":
+            self.selected_cover = message.value
 
     def compose(self) -> ComposeResult:
         yield Header()

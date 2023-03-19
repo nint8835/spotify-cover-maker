@@ -33,6 +33,9 @@ class GradientEditor(Widget):
     def compose(self) -> ComposeResult:
         with Container(classes="editor_container"):
             with Container(classes="input_container"):
+                yield Label("Name")
+                yield Input(value=self.cover.name, id="name")
+            with Container(classes="input_container"):
                 yield Label("Title")
                 yield Input(value=self.cover.title, id="title")
             with Container(classes="input_container"):
