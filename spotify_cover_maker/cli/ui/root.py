@@ -14,9 +14,7 @@ from .sidebar import Sidebar
 
 
 def fetch_initial_covers() -> tuple[Cover, ...]:
-    # TODO: Take in path as argument
-    cover_data = load_cover_data(Path("covers.yaml"))
-
+    cover_data = load_cover_data(UIRoot.cover_path)
     return tuple(cover_data.covers)
 
 
@@ -38,6 +36,8 @@ class UIRoot(App[None]):
     covers: reactive[tuple[Cover, ...]] = reactive(fetch_initial_covers)
     selected_cover: reactive[str | None] = reactive(None)
 
+    cover_path: Path = Path("covers.yaml")
+
     def action_add_cover(self) -> None:
         self.covers = self.covers + (
             GradientCover(
@@ -53,9 +53,9 @@ class UIRoot(App[None]):
             self.selected_cover = None
 
     def action_save(self) -> None:
-        existing_config = load_cover_data(Path("covers.yaml"))
+        existing_config = load_cover_data(UIRoot.cover_path)
         existing_config.covers = list(self.covers)
-        save_cover_data(existing_config, Path("covers.yaml"))
+        save_cover_data(existing_config, UIRoot.cover_path)
 
     def watch_covers(self, _: list[Cover], new: list[Cover]) -> None:
         self.query_one(Sidebar).covers = tuple(cover.name for cover in new)

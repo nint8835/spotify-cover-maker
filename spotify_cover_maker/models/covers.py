@@ -63,8 +63,11 @@ class CoverFile(BaseModel):
 
 
 def load_cover_data(path: os.PathLike[str]) -> CoverFile:
-    with open(path) as f:
-        return CoverFile.parse_obj(yaml.safe_load(f))
+    try:
+        with open(path) as f:
+            return CoverFile.parse_obj(yaml.safe_load(f))
+    except FileNotFoundError:
+        return CoverFile(covers=[])
 
 
 def save_cover_data(cover_data: CoverFile, path: os.PathLike[str]) -> None:

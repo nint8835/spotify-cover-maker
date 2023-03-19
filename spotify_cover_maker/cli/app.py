@@ -51,8 +51,14 @@ def generate(
 
 
 @app.command(name="manage")
-def manage() -> None:
+def manage(
+    covers_path: Path = typer.Option(
+        "covers.yaml", help="Path to the file containing your cover definitions."
+    ),
+) -> None:
     """Open the cover management UI."""
+    UIRoot.cover_path = covers_path
+
     UIRoot().run()
 
 
