@@ -29,6 +29,8 @@ class GradientEditor(Widget):
             self.cover.title = event.value if event.value else None
         elif event.input.id == "subtitle":
             self.cover.subtitle = event.value if event.value else None
+        elif event.input.id == "heading_lines":
+            self.cover.heading_lines = event.value.split("\\n")
 
     def compose(self) -> ComposeResult:
         with Container(classes="editor_container"):
@@ -41,3 +43,8 @@ class GradientEditor(Widget):
             with Container(classes="input_container"):
                 yield Label("Subtitle")
                 yield Input(value=self.cover.subtitle, id="subtitle")
+            with Container(classes="input_container"):
+                yield Label("Heading Lines (separated by \\n)")
+                yield Input(
+                    value="\\n".join(self.cover.heading_lines), id="heading_lines"
+                )
