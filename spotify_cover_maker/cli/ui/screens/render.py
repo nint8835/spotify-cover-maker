@@ -1,6 +1,7 @@
 import asyncio
 from pathlib import Path
 
+from rich.progress import Progress
 from textual.app import ComposeResult
 from textual.screen import Screen
 from textual.widgets import TextLog
@@ -28,8 +29,8 @@ class RenderScreen(Screen):
         for cover in plan.covers:
             log.write(f" - {cover.name}")
 
-        log.write("\nRendering covers...")
-        plan.render()
+        plan.render(progress=Progress(console=self.app.console))
+        self.app.console.show_cursor(False)
 
         log.write("\nDone! Press Esc to exit.")
 
