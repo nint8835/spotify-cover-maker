@@ -10,6 +10,7 @@ from spotify_cover_maker.models import Cover, load_cover_data, save_cover_data
 from spotify_cover_maker.models.covers import GradientCover
 
 from .editor import Editor
+from .screens import RenderScreen
 from .sidebar import Sidebar
 
 
@@ -31,6 +32,7 @@ class UIRoot(App[None]):
         Binding("ctrl+a", "add_cover", "Add Cover"),
         Binding("ctrl+d", "delete_cover", "Delete Cover"),
         Binding("ctrl+s", "save", "Save"),
+        Binding("ctrl+r", "render_covers", "Render Covers"),
     ]
 
     covers: reactive[tuple[Cover, ...]] = reactive(fetch_initial_covers)
@@ -56,6 +58,11 @@ class UIRoot(App[None]):
         existing_config = load_cover_data(UIRoot.cover_path)
         existing_config.covers = list(self.covers)
         save_cover_data(existing_config, UIRoot.cover_path)
+
+    def action_render_covers(self) -> None:
+        self.action_save()
+        render_screen = RenderScreen()
+        self.push_screen(render_screen)
 
     def watch_covers(self, _: list[Cover], new: list[Cover]) -> None:
         self.query_one(Sidebar).covers = tuple(cover.name for cover in new)
