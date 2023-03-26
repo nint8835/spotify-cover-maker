@@ -1,6 +1,7 @@
 [tool.poetry]
 name = "spotify-cover-maker"
-version = "0.1.0"
+# Version number is set automatically when building release
+version = "0.0.0"
 description = ""
 authors = ["Riley Flynn <riley@rileyflynn.me>"]
 license = "MIT"
