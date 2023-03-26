@@ -1,3 +1,25 @@
+name-template: 'v$RESOLVED_VERSION'
+tag-template: 'v$RESOLVED_VERSION'
+categories:
+  - title: '🚀 Features'
+    labels:
+      - 'enhancement'
+  - title: '🐛 Bug Fixes'
+    labels:
+      - 'bug'
+  - title: '🧰 Maintenance'
+    label: 'chore'
+version-resolver:
+  major:
+    labels:
+      - 'version/major'
+  minor:
+    labels:
+      - 'version/minor'
+  patch:
+    labels:
+      - 'version/patch'
+  default: patch
 template: |
   ## What’s Changed
 
