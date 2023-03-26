@@ -20,6 +20,8 @@ version-resolver:
     labels:
       - 'version/patch'
   default: patch
+exclude-labels:
+  - 'skip-changelog'
 template: |
   ## What’s Changed
 
