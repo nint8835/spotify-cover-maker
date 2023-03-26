@@ -55,9 +55,13 @@ def manage(
     covers_path: Path = typer.Option(
         "covers.yaml", help="Path to the file containing your cover definitions."
     ),
+    state_path: Path = typer.Option(
+        ".scm_state.yaml", help="Path to the file that cover state should be saved in."
+    ),
 ) -> None:
     """Open the cover management UI."""
     UIRoot.cover_path = covers_path
+    UIRoot.state_path = state_path
 
     UIRoot().run()
 

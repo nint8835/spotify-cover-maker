@@ -39,6 +39,7 @@ class UIRoot(App[None]):
     selected_cover: reactive[str | None] = reactive(None)
 
     cover_path: Path = Path("covers.yaml")
+    state_path: Path = Path(".scm_state.yaml")
 
     def action_add_cover(self) -> None:
         self.covers = self.covers + (
@@ -61,7 +62,7 @@ class UIRoot(App[None]):
 
     def action_render_covers(self) -> None:
         self.action_save()
-        render_screen = RenderScreen()
+        render_screen = RenderScreen(UIRoot.cover_path, UIRoot.state_path)
         self.push_screen(render_screen)
 
     def watch_covers(self, _: list[Cover], new: list[Cover]) -> None:
