@@ -1,1 +1,3 @@
-# Hello world!
+# spotify-cover-maker
+
+> TODO: Actual content

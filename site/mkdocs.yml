@@ -3,6 +3,13 @@ site_url: https://spotify-cover-maker.bootleg.technology
 repo_url: https://github.com/nint8835/spotify-cover-maker
 repo_name: nint8835/spotify-cover-maker
 edit_uri: edit/main/site/docs/
+extra:
+  social:
+    - icon: material/mastodon
+      link: https://hachyderm.io/@nit
+    - icon: material/github
+      link: https://github.com/nint8835
+copyright: Copyright &copy; 2023 Riley Flynn
 
 theme:
   name: material
@@ -10,3 +17,25 @@ theme:
     scheme: slate
     primary: deep purple
     accent: teal
+  font:
+    text: IBM Plex Sans
+    code: IBM Plex Mono
+  icon:
+    logo: material/album
+    repo: material/github
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.footer
+    - navigation.tabs
+
+    - search.suggest
+
+plugins:
+  - meta
+  - privacy
+  - search
+  - social
+
+nav:
+  - Home: index.md

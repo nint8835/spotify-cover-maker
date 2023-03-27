@@ -18,6 +18,7 @@ jobs:
         with:
           key: ${{ github.ref }}
           path: .cache
+        working-directory: site
       - run: sudo apt-get install pngquant 
       - run: pip install -r requirements.txt
         working-directory: site
