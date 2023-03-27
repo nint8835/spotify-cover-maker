@@ -27,6 +27,7 @@ class GradientCover(CoverBase):
     heading_lines: list[str] = ["Favourite", "Songs"]
     title: str | None = None
     subtitle: str | None = None
+    font: str = "sans-serif"
 
     def get_template_data(self) -> dict[str, Any]:
         random.seed(self.name)
@@ -45,6 +46,7 @@ class GradientCover(CoverBase):
             "heading_lines": self.heading_lines,
             "title": self.title,
             "subtitle": self.subtitle,
+            "font": self.font,
         }
 
 
