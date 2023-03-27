@@ -1,0 +1,12 @@
+site_name: spotify-cover-maker
+site_url: https://spotify-cover-maker.bootleg.technology
+repo_url: https://github.com/nint8835/spotify-cover-maker
+repo_name: nint8835/spotify-cover-maker
+edit_uri: edit/main/site/docs/
+
+theme:
+  name: material
+  palette:
+    scheme: slate
+    primary: deep purple
+    accent: teal
