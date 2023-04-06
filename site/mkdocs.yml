@@ -39,3 +39,6 @@ plugins:
 
 nav:
   - Home: index.md
+  - Commands:
+      - generate: commands/generate.md
+      - manage: commands/manage.md
