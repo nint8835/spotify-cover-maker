@@ -22,7 +22,7 @@ The mode to use for selecting which images to generate. Must be one of the follo
 
 ### `--covers-path`
 
-Path to a cover definition file (see ***TODO: insert link to covers docs***).
+Path to a cover definition file (see details [here](/config/covers.yaml)).
  
 Defaults to `./covers.yaml`
 

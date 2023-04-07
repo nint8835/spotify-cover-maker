@@ -28,6 +28,7 @@ theme:
     - navigation.tracking
     - navigation.footer
     - navigation.tabs
+    - navigation.indexes
 
     - search.suggest
 
@@ -37,8 +38,18 @@ plugins:
   - search
   - social
 
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+
 nav:
   - Home: index.md
   - Commands:
       - generate: commands/generate.md
       - manage: commands/manage.md
+  - Configuration:
+      - covers.yaml: config/covers.yaml.md
+      - Covers:
+          - config/covers/index.md
+          - Gradient: config/covers/gradient.md

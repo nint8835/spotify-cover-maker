@@ -1,0 +1,9 @@
+output_path: docs/config/covers/assets
+covers:
+  - name: gradient
+    template: gradient
+    heading_lines:
+      - Heading
+      - Lines
+    title: title
+    subtitle: subtitle

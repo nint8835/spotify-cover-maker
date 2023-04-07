@@ -12,7 +12,7 @@ spotify-cover-maker manage
 
 ### `--covers-path`
 
-Path to a cover definition file (see ***TODO: insert link to covers docs***).
+Path to a cover definition file (see details [here](/config/covers.yaml)).
 
 Defaults to `./covers.yaml`
 
