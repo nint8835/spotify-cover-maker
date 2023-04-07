@@ -46,6 +46,7 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Commands:
+      - commands/index.md
       - generate: commands/generate.md
       - manage: commands/manage.md
   - Configuration:
