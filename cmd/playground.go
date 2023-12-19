@@ -4,13 +4,13 @@ import (
 	"bytes"
 	"context"
 	"os"
-	"strings"
 	"text/template"
 
 	"github.com/Masterminds/sprig/v3"
-	"github.com/kanrichan/resvg-go"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
+
+	"github.com/nint8835/spotify-cover-maker/pkg/rendering"
 )
 
 const testingTemplateText = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -63,49 +63,10 @@ var playgroundCmd = &cobra.Command{
 		testSvgFile, _ := os.Create("test.svg")
 		testSvgFile.Write(testBuf.Bytes())
 
-		worker, err := resvg.NewDefaultWorker(context.Background())
+		png, err := rendering.SvgToPng(context.Background(), testBuf.Bytes())
 		if err != nil {
 			panic(err)
 		}
-		defer worker.Close()
-
-		fontdb, err := worker.NewFontDBDefault()
-		if err != nil {
-			panic(err)
-		}
-		defer fontdb.Close()
-
-		dirEntries, _ := os.ReadDir("fonts")
-		for _, dirEntry := range dirEntries {
-			if !strings.HasSuffix(dirEntry.Name(), ".ttf") {
-				continue
-			}
-
-			fontBytes, _ := os.ReadFile("fonts/" + dirEntry.Name())
-			fontdb.LoadFontData(fontBytes)
-		}
-
-		tree, err := worker.NewTreeFromData(testBuf.Bytes(), &resvg.Options{})
-		if err != nil {
-			panic(err)
-		}
-		defer tree.Close()
-
-		width, height, err := tree.GetSize()
-		if err != nil {
-			panic(err)
-		}
-
-		pixmap, err := worker.NewPixmap(uint32(width), uint32(height))
-		if err != nil {
-			panic(err)
-		}
-		defer pixmap.Close()
-
-		tree.ConvertText(fontdb)
-		tree.Render(resvg.TransformIdentity(), pixmap)
-
-		png, _ := pixmap.EncodePNG()
 
 		pngFile, _ := os.Create("test.png")
 		pngFile.Write(png)
