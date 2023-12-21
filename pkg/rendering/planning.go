@@ -12,6 +12,14 @@ import (
 	"github.com/nint8835/spotify-cover-maker/pkg/templating"
 )
 
+type PlanMode int
+
+const (
+	PlanModeAll PlanMode = iota
+	PlanModeMissing
+	PlanModeChanged
+)
+
 type PlannedRender struct {
 	Template templating.TemplateDefinition
 	Cover    templating.Cover
@@ -27,7 +35,7 @@ type RenderPlan struct {
 	PlannedRenders []PlannedRender
 }
 
-func PlanRender(configPath, statePath string) (RenderPlan, error) {
+func PlanRender(configPath, statePath string, mode PlanMode) (RenderPlan, error) {
 	plan := RenderPlan{
 		ConfigPath:     configPath,
 		StatePath:      statePath,
@@ -55,21 +63,49 @@ func PlanRender(configPath, statePath string) (RenderPlan, error) {
 		templateDefinition := templating.TemplateDefinitionMap[cover.Meta.Template]
 		newState := templating.ComputeState(templateDefinition, cover)
 
-		// TODO: Implement different render plan modes
-		if !hasExistingState {
-			log.Debug().Msgf("Adding cover %s to render plan as it does not exist", cover.Meta.Name)
-			plan.PlannedRenders = append(plan.PlannedRenders, PlannedRender{
-				Template: templateDefinition,
-				Cover:    cover,
-			})
-		} else if existingState != newState {
-			log.Debug().Msgf("Adding cover %s to render plan as it is out of date", cover.Meta.Name)
-			plan.PlannedRenders = append(plan.PlannedRenders, PlannedRender{
-				Template: templateDefinition,
-				Cover:    cover,
-			})
-		} else {
-			log.Debug().Msgf("Skipping cover %s because it already exists and is up to date", cover.Meta.Name)
+		plannedRender := PlannedRender{
+			Template: templateDefinition,
+			Cover:    cover,
+		}
+
+		coverPath := path.Join(configFile.OutputPath, cover.Meta.Name+".png")
+
+		switch mode {
+		case PlanModeAll:
+			log.Debug().Msgf("Adding cover %s to render plan as mode is all", cover.Meta.Name)
+			plan.PlannedRenders = append(plan.PlannedRenders, plannedRender)
+		case PlanModeMissing:
+			if !hasExistingState {
+				log.Debug().Msgf(
+					"Adding cover %s to render plan as mode is missing and cover does not appear in state",
+					cover.Meta.Name,
+				)
+				plan.PlannedRenders = append(plan.PlannedRenders, plannedRender)
+			} else if _, err := os.Stat(coverPath); os.IsNotExist(err) {
+				log.Debug().Msgf(
+					"Adding cover %s to render plan as mode is missing and cover does not exist on disk",
+					cover.Meta.Name,
+				)
+				plan.PlannedRenders = append(plan.PlannedRenders, plannedRender)
+			} else {
+				log.Debug().Msgf("Skipping cover %s because it already exists", cover.Meta.Name)
+			}
+		case PlanModeChanged:
+			if !hasExistingState {
+				log.Debug().Msgf(
+					"Adding cover %s to render plan as mode is changed and cover does not appear in state",
+					cover.Meta.Name,
+				)
+				plan.PlannedRenders = append(plan.PlannedRenders, plannedRender)
+			} else if existingState != newState {
+				log.Debug().Msgf(
+					"Adding cover %s to render plan as mode is changed and cover is out of date",
+					cover.Meta.Name,
+				)
+				plan.PlannedRenders = append(plan.PlannedRenders, plannedRender)
+			} else {
+				log.Debug().Msgf("Skipping cover %s because it is up to date", cover.Meta.Name)
+			}
 		}
 	}
 

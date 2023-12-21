@@ -12,7 +12,7 @@ var playgroundCmd = &cobra.Command{
 	Use:  "playground",
 	Args: cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		plan, err := rendering.PlanRender("covers.yaml", ".scm_state.yaml")
+		plan, err := rendering.PlanRender("covers.yaml", ".scm_state.yaml", rendering.PlanModeMissing)
 		checkError(err, "error planning render")
 
 		fmt.Printf("%#+v\n", plan)
