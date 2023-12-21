@@ -27,9 +27,6 @@ var playgroundCmd = &cobra.Command{
 		err = yaml.NewEncoder(os.Stdout).Encode(configFile)
 		checkError(err, "error encoding config")
 
-		err = templating.LoadTemplates()
-		checkError(err, "error loading templates")
-
 		testCoverDef := templating.Cover{
 			Meta: templating.CoverMeta{
 				Name:     "2023-12",
@@ -44,6 +41,8 @@ var playgroundCmd = &cobra.Command{
 		}
 
 		templateContext := templating.TemplateDefinitionMap["gradient"].TemplateContext(testCoverDef)
+
+		fmt.Printf("%#+v\n", templating.ComputeState(templating.TemplateDefinitionMap["gradient"], testCoverDef))
 
 		var testBuf bytes.Buffer
 		err = templating.Templates["gradient"].Execute(&testBuf, templateContext)
