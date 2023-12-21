@@ -11,6 +11,8 @@ import (
 )
 
 var logLevel string
+var coverPath string
+var statePath string
 
 var rootCmd = &cobra.Command{
 	Use:   "spotify-cover-maker",
@@ -44,6 +46,9 @@ func init() {
 			return matchingLevels, cobra.ShellCompDirectiveNoFileComp
 		},
 	)
+
+	rootCmd.PersistentFlags().StringVar(&coverPath, "cover-path", "covers.yaml", "path to the cover config file")
+	rootCmd.PersistentFlags().StringVar(&statePath, "state-path", ".scm_state.yaml", "path to the state file")
 
 	cobra.OnInitialize(initLogging)
 }

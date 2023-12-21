@@ -12,6 +12,12 @@ import (
 	"github.com/nint8835/spotify-cover-maker/pkg/templating"
 )
 
+var PlanModes = map[string]PlanMode{
+	"all":     PlanModeAll,
+	"missing": PlanModeMissing,
+	"changed": PlanModeChanged,
+}
+
 type PlanMode int
 
 const (
