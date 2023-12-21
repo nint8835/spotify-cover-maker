@@ -29,3 +29,4 @@ fonts/*
 # Test files
 test.png
 test.svg
+/covers.yaml
