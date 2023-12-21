@@ -80,5 +80,9 @@ func LoadConfig(path string) (*Config, error) {
 		return nil, fmt.Errorf("error decoding config file: %w", err)
 	}
 
+	if config.OutputPath == "" {
+		config.OutputPath = "covers"
+	}
+
 	return &config, nil
 }

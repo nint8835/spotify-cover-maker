@@ -30,3 +30,5 @@ fonts/*
 test.png
 test.svg
 /covers.yaml
+/.scm_state.yaml
+/covers
