@@ -32,3 +32,5 @@ test.svg
 /covers.yaml
 /.scm_state.yaml
 /covers
+
+dist/
