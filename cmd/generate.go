@@ -3,6 +3,7 @@ package cmd
 import (
 	"strings"
 
+	"github.com/pterm/pterm"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 
@@ -22,6 +23,8 @@ var generateCmd = &cobra.Command{
 
 		plan, err := rendering.PlanRender(coverPath, statePath, renderMode)
 		checkError(err, "error planning render")
+
+		plan.ProgressBar = &pterm.DefaultProgressbar
 
 		err = rendering.ExecutePlan(plan)
 		checkError(err, "error executing render plan")

@@ -7,6 +7,7 @@ import (
 	"os"
 	"path"
 
+	"github.com/pterm/pterm"
 	"github.com/rs/zerolog/log"
 
 	"github.com/nint8835/spotify-cover-maker/pkg/templating"
@@ -39,6 +40,8 @@ type RenderPlan struct {
 	State  templating.StateFile
 
 	PlannedRenders []PlannedRender
+
+	ProgressBar *pterm.ProgressbarPrinter
 }
 
 func PlanRender(configPath, statePath string, mode PlanMode) (RenderPlan, error) {
@@ -126,6 +129,13 @@ func ExecutePlan(plan RenderPlan) error {
 		}
 	}
 
+	var progressBar *pterm.ProgressbarPrinter
+
+	if plan.ProgressBar != nil {
+		plan.ProgressBar = plan.ProgressBar.WithTotal(len(plan.PlannedRenders)).WithTitle("Rendering covers")
+		progressBar, _ = plan.ProgressBar.Start()
+	}
+
 	for _, plannedRender := range plan.PlannedRenders {
 		renderPath := path.Join(plan.Config.OutputPath, plannedRender.Cover.Meta.Name+".png")
 
@@ -156,6 +166,10 @@ func ExecutePlan(plan RenderPlan) error {
 			plannedRender.Template,
 			plannedRender.Cover,
 		)
+
+		if progressBar != nil {
+			progressBar.Increment()
+		}
 	}
 
 	err := templating.SaveStateFile(plan.StatePath, plan.State)
