@@ -65,6 +65,7 @@ func (c Cover) MarshalYAML() (interface{}, error) {
 
 type Config struct {
 	OutputPath string  `yaml:"output_path,omitempty"`
+	FontPath   *string `yaml:"font_path,omitempty"`
 	Covers     []Cover `yaml:"covers,omitempty"`
 }
 

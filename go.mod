@@ -8,6 +8,7 @@ require (
 	github.com/pterm/pterm v0.12.72
 	github.com/rs/zerolog v1.31.0
 	github.com/spf13/cobra v1.8.0
+	golang.org/x/image v0.14.0
 	gopkg.in/yaml.v3 v3.0.1
 )
 

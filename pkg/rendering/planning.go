@@ -148,7 +148,7 @@ func ExecutePlan(plan RenderPlan) error {
 		}
 
 		// TODO: Figure out what to do about contexts
-		pngData, err := SvgToPng(context.Background(), svgData.Bytes())
+		pngData, err := SvgToPng(context.Background(), svgData.Bytes(), plan.Config.FontPath)
 		if err != nil {
 			return fmt.Errorf("error converting SVG to PNG for cover %s: %w", plannedRender.Cover.Meta.Name, err)
 		}
