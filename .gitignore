@@ -22,10 +22,6 @@ go.work
 
 .idea/
 
-# Ignoring font directory to keep repo size down while still experimenting
-fonts/*
-!fonts/.gitkeep
-
 # Test files
 test.png
 test.svg

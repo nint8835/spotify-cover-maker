@@ -2,6 +2,7 @@ package rendering
 
 import (
 	"context"
+	"embed"
 	"errors"
 	"fmt"
 	"io"
@@ -13,6 +14,9 @@ import (
 	"github.com/rs/zerolog/log"
 	"golang.org/x/image/font/sfnt"
 )
+
+//go:embed fonts
+var embeddedFontsFs embed.FS
 
 // https://learn.microsoft.com/en-us/typography/opentype/spec/name#name-ids
 const nameIDTypographicFamily = 16
@@ -123,6 +127,15 @@ func listFsFonts(fs fs.ReadDirFS, embedded bool) ([]Font, error) {
 
 func ListFonts(customFontPath *string) ([]Font, error) {
 	fonts := make([]Font, 0)
+
+	subFs, _ := fs.Sub(embeddedFontsFs, "fonts")
+
+	embeddedFonts, err := listFsFonts(subFs.(fs.ReadDirFS), true)
+	if err != nil {
+		return nil, fmt.Errorf("error listing embedded fonts: %w", err)
+	}
+
+	fonts = append(fonts, embeddedFonts...)
 
 	if customFontPath != nil {
 		customFonts, err := listFsFonts(os.DirFS(*customFontPath).(fs.ReadDirFS), false)
