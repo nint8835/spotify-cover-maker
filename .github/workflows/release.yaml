@@ -17,13 +17,6 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version-file: 'go.mod'
-      - name: Publish Release Notes
-        uses: release-drafter/release-drafter@v5
-        with:
-          version: ${{ github.event.release.tag_name }}
-          publish: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: goreleaser/goreleaser-action@v5
         with:
           distribution: goreleaser
