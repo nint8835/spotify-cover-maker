@@ -19,12 +19,13 @@ const nameIDTypographicFamily = 16
 const nameIDTypographicSubfamily = 17
 
 type Font struct {
-	Name     string
-	Embedded bool
-	FS       fs.FS
-	License  string
-	Variants []string
-	Paths    []string
+	Name      string
+	Embedded  bool
+	FS        fs.FS
+	License   string
+	Copyright string
+	Variants  []string
+	Paths     []string
 }
 
 func listFsFonts(fs fs.ReadDirFS, embedded bool) ([]Font, error) {
@@ -88,15 +89,21 @@ func listFsFonts(fs fs.ReadDirFS, embedded bool) ([]Font, error) {
 			return nil, fmt.Errorf("error getting font license for file %s: %w", fontPath, err)
 		}
 
+		copyright, err := sfntObj.Name(nil, sfnt.NameIDCopyright)
+		if err != nil {
+			return nil, fmt.Errorf("error getting font copyright for file %s: %w", fontPath, err)
+		}
+
 		existingFamily, valid := families[family]
 		if !valid {
 			existingFamily = &Font{
-				Name:     family,
-				Embedded: embedded,
-				FS:       fs,
-				License:  license,
-				Variants: make([]string, 0),
-				Paths:    make([]string, 0),
+				Name:      family,
+				Embedded:  embedded,
+				FS:        fs,
+				License:   license,
+				Copyright: copyright,
+				Variants:  make([]string, 0),
+				Paths:     make([]string, 0),
 			}
 
 			families[family] = existingFamily
