@@ -1,28 +1,14 @@
-name: Lint
+name: golangci-lint
 
 on:
   push:
-    tags:
-      - v*
-    branches:
-      - main
   pull_request:
 
 permissions:
   contents: read
   pull-requests: read
+  checks: write
 
 jobs:
-  golangci:
-    name: lint
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-go@v5
-        with:
-          go-version-file: 'go.mod'
-      - name: golangci-lint
-        uses: golangci/golangci-lint-action@v3
-        with:
-          version: latest
-          only-new-issues: true
+  golangci-lint:
+    uses: nint8835/workflows/.github/workflows/golangci-lint.yaml@main
