@@ -30,3 +30,6 @@ test.svg
 /covers
 
 dist/
+
+site/venv
+site/.cache
