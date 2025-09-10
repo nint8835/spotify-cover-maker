@@ -1,20 +1,24 @@
+version: "2"
+
 linters:
   enable:
     - errcheck
-    - gosimple
-    - govet
-    - ineffassign
-    - staticcheck
-    - unused
     - errname
     - exhaustive
     - godot
-    - goimports
+    - govet
+    - ineffassign
     - lll
+    - staticcheck
     - testpackage
+    - unused
     - usestdlibvars
     - whitespace
 
-linters-settings:
-  goimports:
-    local-prefixes: github.com/nint8835/spotify-cover-maker
+formatters:
+  enable:
+    - goimports
+  settings:
+    goimports:
+      local-prefixes:
+        - github.com/nint8835/spotify-cover-maker
