@@ -185,18 +185,25 @@ func loadFonts(fontdb *resvg.FontDB, customFontPath *string) error {
 	return nil
 }
 
+func deferClose(c io.Closer) {
+	err := c.Close()
+	if err != nil {
+		log.Error().Err(err).Msg("Error closing resource")
+	}
+}
+
 func SvgToPng(ctx context.Context, svg []byte, customFontPath *string) ([]byte, error) {
 	worker, err := resvg.NewDefaultWorker(ctx)
 	if err != nil {
 		return nil, fmt.Errorf("error creating resvg worker: %w", err)
 	}
-	defer worker.Close()
+	defer deferClose(worker)
 
 	fontdb, err := worker.NewFontDBDefault()
 	if err != nil {
 		return nil, fmt.Errorf("error creating font database: %w", err)
 	}
-	defer fontdb.Close()
+	defer deferClose(fontdb)
 
 	err = loadFonts(fontdb, customFontPath)
 	if err != nil {
@@ -207,7 +214,7 @@ func SvgToPng(ctx context.Context, svg []byte, customFontPath *string) ([]byte, 
 	if err != nil {
 		return nil, fmt.Errorf("error parsing svg tree: %w", err)
 	}
-	defer tree.Close()
+	defer deferClose(tree)
 
 	width, height, err := tree.GetSize()
 	if err != nil {
@@ -218,7 +225,7 @@ func SvgToPng(ctx context.Context, svg []byte, customFontPath *string) ([]byte, 
 	if err != nil {
 		return nil, fmt.Errorf("error creating pixmap: %w", err)
 	}
-	defer pixmap.Close()
+	defer deferClose(pixmap)
 
 	err = tree.ConvertText(fontdb)
 	if err != nil {
