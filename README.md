@@ -4,7 +4,9 @@ Automatically generate simple Spotify playlist covers.
 
 ## Installation
 
-TODO
+```
+go install github.com/nint8835/spotify-cover-maker
+```
 
 ## Usage
 
