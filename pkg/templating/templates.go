@@ -29,6 +29,9 @@ type TemplateDefinition interface {
 
 	// TemplateContext returns the data to be passed to the template for a given cover.
 	TemplateContext(cover Cover) any
+
+	// RequiredFonts returns a list of font names required by the template for the given cover.
+	RequiredFonts(cover Cover) []string
 }
 
 var templateDefinitions = []TemplateDefinition{

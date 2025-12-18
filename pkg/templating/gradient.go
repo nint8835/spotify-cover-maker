@@ -71,3 +71,8 @@ func (t *GradientTemplate) TemplateContext(cover Cover) any {
 		Colour2: fmt.Sprintf("rgb(%d,%d,%d)", r2, g2, b2),
 	}
 }
+
+func (t *GradientTemplate) RequiredFonts(cover Cover) []string {
+	data := cover.Data.(GradientTemplateConfig)
+	return []string{*data.Font}
+}

@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 	"path"
+	"strings"
 
 	"github.com/pterm/pterm"
 	"github.com/rs/zerolog/log"
@@ -64,6 +65,17 @@ func PlanRender(configPath, statePath string, mode PlanMode) (RenderPlan, error)
 	plan.Config = *configFile
 	plan.State = stateFile
 
+	fonts, err := ListFonts(configFile.FontPath)
+	if err != nil {
+		return plan, fmt.Errorf("error listing fonts: %w", err)
+	}
+
+	fontNames := make(map[string]bool)
+
+	for _, font := range fonts {
+		fontNames[font.Name] = true
+	}
+
 	for _, cover := range configFile.Covers {
 		log.Debug().Msgf("Planning render for cover %s", cover.Meta.Name)
 
@@ -71,6 +83,19 @@ func PlanRender(configPath, statePath string, mode PlanMode) (RenderPlan, error)
 
 		templateDefinition := templating.TemplateDefinitionMap[cover.Meta.Template]
 		newState := templating.ComputeState(templateDefinition, cover)
+
+		requiredFonts := templateDefinition.RequiredFonts(cover)
+
+		missingFonts := make([]string, 0)
+		for _, font := range requiredFonts {
+			if _, exists := fontNames[font]; !exists {
+				missingFonts = append(missingFonts, font)
+			}
+		}
+
+		if len(missingFonts) > 0 {
+			return plan, fmt.Errorf("cover %s requires missing fonts: %v", cover.Meta.Name, strings.Join(missingFonts, ", "))
+		}
 
 		plannedRender := PlannedRender{
 			Template: templateDefinition,
