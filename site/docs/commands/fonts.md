@@ -1,18 +1,18 @@
-# manage
+# fonts
 
-Opens a terminal UI to manage cover definitions.
+Displays information on available fonts.
 
 ## Usage
 
 ```bash
-spotify-cover-maker manage
+spotify-cover-maker fonts
 ```
 
 ## Options
 
 ### `--covers-path`
 
-Path to a cover definition file (see details [here](/config/covers.yaml)).
+Path to a cover definition file (see details [here](../config/covers.yaml.md)).
 
 Defaults to `./covers.yaml`
 

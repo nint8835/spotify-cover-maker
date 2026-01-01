@@ -1,4 +1,4 @@
 # Commands
 
-- [generate](./generate)
-- [manage](./manage)
+- [fonts](./fonts.md)
+- [generate](./generate.md)

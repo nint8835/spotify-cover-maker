@@ -15,15 +15,15 @@ spotify-cover-maker generate
 The mode to use for selecting which images to generate. Must be one of the following:
 
 | Mode                | Description                                                                                                                                                         |
-|---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `all`               | Generate images for all defined covers.                                                                                                                             |
 | `changed` (default) | Generate images for all covers that have changed since the last time they were generated, and for all new covers which haven't had images generated for previously. |
 | `missing`           | Generate images for new covers and covers for which the image file is missing.                                                                                      |
 
 ### `--covers-path`
 
-Path to a cover definition file (see details [here](/config/covers.yaml)).
- 
+Path to a cover definition file (see details [here](../config/covers.yaml.md)).
+
 Defaults to `./covers.yaml`
 
 ### `--state-path`

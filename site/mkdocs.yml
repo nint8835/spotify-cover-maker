@@ -46,8 +46,8 @@ nav:
   - Home: index.md
   - Commands:
       - commands/index.md
+      - fonts: commands/fonts.md
       - generate: commands/generate.md
-      - manage: commands/manage.md
   - Configuration:
       - covers.yaml: config/covers.yaml.md
       - Covers:

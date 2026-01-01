@@ -1,5 +1,5 @@
 # Cover Templates
 
-## [Gradient](./gradient)
+## [Gradient](./gradient.md)
 
 ![Gradient cover example](./assets/gradient.png)

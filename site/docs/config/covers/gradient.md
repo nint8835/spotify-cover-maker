@@ -5,11 +5,11 @@
 ## Options
 
 !!! note
-    
+
     Required fields are indicated with a **bold** name.
 
 | Name          | Description                                                                                                                                                                    | Type            | Default                  |
-|---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------|--------------------------|
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- | ------------------------ |
 | **name**      | A unique name to identify this cover. Will be used to generate the filename, as well as a seed for the background colours.                                                     | `str`           |                          |
 | **template**  | Template to use. Set to `gradient` for this template.                                                                                                                          | `str`           |                          |
 | heading_lines | The lines that make up the text in the top left of the cover. Each item will be placed on it's own line.                                                                       | `list[str]`     | `["Favourite", "Songs"]` |
