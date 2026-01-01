@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://spotify-cover-maker.bootleg.technology/</loc>
+         <lastmod>2026-01-01</lastmod>
+    </url>
+    <url>
+         <loc>https://spotify-cover-maker.bootleg.technology/commands/</loc>
+         <lastmod>2026-01-01</lastmod>
+    </url>
+    <url>
+         <loc>https://spotify-cover-maker.bootleg.technology/commands/fonts/</loc>
+         <lastmod>2026-01-01</lastmod>
+    </url>
+    <url>
+         <loc>https://spotify-cover-maker.bootleg.technology/commands/generate/</loc>
+         <lastmod>2026-01-01</lastmod>
+    </url>
+    <url>
+         <loc>https://spotify-cover-maker.bootleg.technology/config/covers.yaml/</loc>
+         <lastmod>2026-01-01</lastmod>
+    </url>
+    <url>
+         <loc>https://spotify-cover-maker.bootleg.technology/config/covers/</loc>
+         <lastmod>2026-01-01</lastmod>
+    </url>
+    <url>
+         <loc>https://spotify-cover-maker.bootleg.technology/config/covers/gradient/</loc>
+         <lastmod>2026-01-01</lastmod>
+    </url>
+</urlset>
