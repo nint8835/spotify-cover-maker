@@ -5,6 +5,7 @@ go 1.21.0
 require (
 	github.com/Masterminds/sprig/v3 v3.2.3
 	github.com/kanrichan/resvg-go v0.0.2-0.20231001163256-63db194ca9f5
+	github.com/lucasb-eyer/go-colorful v1.4.1
 	github.com/pterm/pterm v0.12.72
 	github.com/rs/zerolog v1.31.0
 	github.com/spf13/cobra v1.8.0

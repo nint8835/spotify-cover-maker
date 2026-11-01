@@ -3,7 +3,7 @@ package templating
 import (
 	"crypto/md5"
 	"encoding/binary"
-	"fmt"
+	"image/color"
 	"math/rand"
 
 	"gopkg.in/yaml.v3"
@@ -14,8 +14,7 @@ import (
 type GradientTemplateContext struct {
 	GradientTemplateConfig
 
-	Colour1 string
-	Colour2 string
+	Stops []GradientStop
 }
 
 type GradientTemplateConfig struct {
@@ -67,8 +66,10 @@ func (t *GradientTemplate) TemplateContext(cover Cover) any {
 	return GradientTemplateContext{
 		GradientTemplateConfig: data,
 
-		Colour1: fmt.Sprintf("rgb(%d,%d,%d)", r1, g1, b1),
-		Colour2: fmt.Sprintf("rgb(%d,%d,%d)", r2, g2, b2),
+		Stops: oklchGradientStops(
+			color.RGBA{R: uint8(r1), G: uint8(g1), B: uint8(b1), A: 255},
+			color.RGBA{R: uint8(r2), G: uint8(g2), B: uint8(b2), A: 255},
+		),
 	}
 }
 
