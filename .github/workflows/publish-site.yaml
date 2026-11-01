@@ -26,8 +26,7 @@ jobs:
       - run: mkdocs gh-deploy --force
         working-directory: site
         env:
+          GH_TOKEN: ${{ github.token }}
           GIT_CONFIG_COUNT: '1'
           GIT_CONFIG_KEY_0: credential.helper
           GIT_CONFIG_VALUE_0: '!gh auth git-credential'
-env:
-  GH_TOKEN: ${{ secrets.GH_TOKEN }} 
