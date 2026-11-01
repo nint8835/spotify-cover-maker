@@ -11,4 +11,4 @@ permissions:
 
 jobs:
   golangci-lint:
-    uses: nint8835/workflows/.github/workflows/golangci-lint.yaml@main
+    uses: nint8835/workflows/.github/workflows/golangci-lint.yaml@main # zizmor: ignore[unpinned-uses] -- Intentionally track the shared workflow's main branch.
