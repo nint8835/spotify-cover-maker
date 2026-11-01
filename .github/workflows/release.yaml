@@ -10,7 +10,7 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/checkout@v7.0.1 # zizmor: ignore[unpinned-uses] -- Pinned by actions.lock.
         with:
           fetch-depth: 0
           persist-credentials: false
@@ -20,11 +20,11 @@ jobs:
           GIT_CONFIG_COUNT: '1'
           GIT_CONFIG_KEY_0: credential.helper
           GIT_CONFIG_VALUE_0: '!gh auth git-credential'
-      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+      - uses: actions/setup-go@v7.0.0 # zizmor: ignore[unpinned-uses] -- Pinned by actions.lock.
         with:
           go-version-file: 'go.mod'
           cache: false
-      - uses: goreleaser/goreleaser-action@a4f02ab5355a589de60d917a659ce617ed19b3de # v7.3.0
+      - uses: goreleaser/goreleaser-action@v7.3.0 # zizmor: ignore[unpinned-uses] -- Pinned by actions.lock.
         with:
           distribution: goreleaser
           version: latest

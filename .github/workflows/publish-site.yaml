@@ -10,13 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.repository.fork == false
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/checkout@v7.0.1 # zizmor: ignore[unpinned-uses] -- Pinned by actions.lock.
         with:
           persist-credentials: false
-      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+      - uses: actions/setup-python@v7.1.0 # zizmor: ignore[unpinned-uses] -- Pinned by actions.lock.
         with:
           python-version: 3.x
-      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+      - uses: actions/cache@v6.1.0 # zizmor: ignore[unpinned-uses] -- Pinned by actions.lock.
         with:
           key: ${{ github.ref }}
           path: site/.cache
